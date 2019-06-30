@@ -1,0 +1,190 @@
+.products {
+	display: flex;
+	margin-top: 50px;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.products .item {
+	height: 217px;
+	border: 3px solid #f8d9e8;	
+	position: relative;
+	margin: 30px 20px;
+}
+
+.products .item span {
+	display: inline-block;
+}
+
+.products .item .price {
+	background: url(../../images/price.png) right bottom no-repeat;
+	width: 70px;
+	height: 65px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-bottom: -4px;
+	margin-right: -4px;
+	padding-top: 25px;
+	padding-left: 5px;
+	color: #94449a;
+}
+
+.products .item .price span {
+	display: block;
+	font-size: 75%;
+	margin-top: -5px;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.products .item .title {
+	background-color: #fff;
+	padding: 0 10px;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	top: -15px;
+}
+
+.products .item .quantity {
+	display: block;
+	position: absolute;
+	width: 70px;
+	bottom: 48px;
+	left: 2px;
+}
+
+.products .item .quantity input{
+	border: 0;
+	width: 46px;
+	height: 46px;
+	background-color: #f6f6f6;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.products .item .quantity .inc,
+.products .item .quantity .dec {
+	width: 22px;
+	height: 22px;
+	background-color: #f6f6f6;
+	line-height: 22px;
+	cursor: pointer;
+}
+
+.products .item .quantity .inc {
+	position: absolute;
+	left: 48px;
+	top: 0;
+}
+
+.products .item .quantity .dec {
+	position: absolute;
+	left: 48px;
+	top: 25px;
+}
+
+.products .item .quantity .inc:hover,
+.products .item .quantity .dec:hover,
+.products .item .quantity .inc:active,
+.products .item .quantity .dec:active {
+	background-color: #dedede;
+}
+
+.products .item .preview {
+	width: 100%;
+	height: 167px;
+	position: relative;
+	top: -5px;
+}
+
+.products .item:nth-child(1) .preview {
+	background: url(../../images/cakes/cake1.png) center no-repeat;	
+}
+
+.products .item:nth-child(2) .preview {
+	background: url(../../images/cakes/cake2.png) center no-repeat;	
+}
+
+.products .item:nth-child(3) .preview {
+	background: url(../../images/cakes/cake3.png) center no-repeat;	
+}
+
+.products .item:nth-child(4) .preview {
+	background: url(../../images/cakes/cake4.png) center no-repeat;	
+}
+
+.products .item:nth-child(5) .preview {
+	background: url(../../images/cakes/cake5.png) center no-repeat;	
+}
+
+.products .item:nth-child(6) .preview {
+	background: url(../../images/cakes/cake6.png) center no-repeat;	
+}
+
+.products .item:nth-child(7) .preview {
+	background: url(../../images/cakes/cake7.png) center no-repeat;	
+}
+
+.products .item:nth-child(8) .preview {
+	background: url(../../images/cakes/cake8.png) center no-repeat;	
+}
+
+.products .item:nth-child(9) .preview {
+	background: url(../../images/cakes/cake9.png) center no-repeat;	
+}
+
+.products .item:nth-child(10) .preview {
+	background: url(../../images/cakes/cake10.png) center no-repeat;	
+}
+
+.products .item:nth-child(11) .preview {
+	background: url(../../images/cakes/cake11.png) center no-repeat;	
+}
+
+.products .item:nth-child(12) .preview {
+	background: url(../../images/cakes/cake12.png) center no-repeat;	
+}
+
+.products .item:nth-child(13) .preview {
+	background: url(../../images/cakes/cake13.png) center no-repeat;	
+}
+
+.products .item:nth-child(14) .preview {
+	background: url(../../images/cakes/cake14.png) center no-repeat;	
+}
+
+.products .item:nth-child(15) .preview {
+	background: url(../../images/cakes/cake15.png) center no-repeat;	
+}
+
+.products .item:nth-child(16) .preview {
+	background: url(../../images/cakes/cake16.png) center no-repeat;	
+}
+
+@media all and (max-width: 890px) {
+	.products .item {
+		width: 216px;
+	}
+}
+
+@media all and (max-width: 1055px) {
+	.products {
+		margin-top: 100px;
+	}
+}
+
+@media all and (min-width: 891px) {
+	.products .item {
+		width: 256px;
+	}
+}
+
+@media all and (min-width: 1056px) {
+	.products {
+		margin-top: 50px;
+	}
+}

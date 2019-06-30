@@ -1,0 +1,89 @@
+/* Reset: */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div, span, a {
+	box-sizing: border-box;
+}
+
+main, fieldset, form, label, caption, article, aside, canvas, 
+figure, figcaption, address, section, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	display: block;
+	box-sizing: border-box;
+}
+
+table, input, button, textarea {
+	font-family: inherit;
+	font-size: 120%;
+	box-sizing: border-box;	
+}
+
+input, select, table, button, textarea {
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height:inherit;
+	box-sizing: border-box;
+}
+
+a {
+	outline: none;
+}
+
+/*============= General styles: ======================*/
+#root > div {
+    text-align: center;
+}
+
+body {
+	font-weight: normal;
+	font-family: "Cabin", sans-serif;
+	font-size: 120%;
+	color: #7d878d;
+	background-color: #fff;
+	text-align: center;
+}
+
+a {
+    color: #7895a7;
+    text-decoration: none;
+}
+
+a:hover {
+	color: #7895a7;
+}
+
+main {
+	max-width: 1200px;
+	margin: 0 auto;		
+}
+
+button {
+	background-color: #94449a;
+	color: #fff;
+	border: 0;
+	padding: 10px 30px;
+	border-radius: 5px;
+}
+
+.button-container {
+	margin: 20px 20px 40px 20px;
+}
+
+h2 {
+	z-index: 3;
+	font-size: 140%;
+}
+
+.error {
+	color: #df2929;
+}
+
+p {
+	z-index: 3;
+}

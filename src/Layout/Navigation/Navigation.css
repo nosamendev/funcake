@@ -1,0 +1,106 @@
+nav {
+	height: 38px;
+	background-color: #f8d9e8;
+	max-width: 1200px;
+    margin: 0 auto;	
+	padding: 0;
+	display: block;
+	box-sizing: border-box;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	float: left;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li a {
+	display: inline-block;
+	padding: 10px;
+	color: #47487e;
+	font-size: 80%;
+}
+
+nav ul li a:hover,
+nav ul li a:active {
+	color: #8081be;
+}
+
+nav ul + ul {
+	float: right;
+}
+
+.mobile-menu {	
+	text-align: right;
+	position: absolute;
+	right: 20px;
+	z-index: 2;
+}
+
+.mobile-menu ul {
+	float: none;
+	margin-top: -5px;
+	display: none;
+	background-color: #f8d9e8;
+}
+
+.mobile-menu:hover ul {
+	display: block;
+}
+
+.mobile-menu ul li {
+	display: block;
+	float: none;
+	text-align: left;
+	border-top: 1px solid #fff;
+	
+}
+
+.mobile-menu ul li a {
+	padding: 8px 20px;
+	display: block;
+}
+
+.mobile-menu > span {
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	background: url(../../images/menu.svg) center no-repeat;
+	cursor: pointer;
+}
+
+@media all and (max-width: 1055px) {
+	nav {
+		position: relative;
+		margin-top: -20px;
+	}
+}
+
+@media all and (max-width: 445px) {
+	.mobile-menu {
+		display: block;
+	}
+
+	nav > ul {
+		display: none;
+	}
+}
+
+@media all and (min-width: 446px) {
+	.mobile-menu {
+		display: none;
+	}
+}
+
+@media all and (min-width: 1056px) {
+	nav {
+		position: static;
+		margin-top: 0;
+		
+	}
+}

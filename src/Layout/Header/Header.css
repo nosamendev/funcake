@@ -1,0 +1,78 @@
+header {
+	position: relative;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-image: url(../../images/header_bg.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 397px;
+    text-align: center;
+    padding: 0;
+	display: block;
+	box-sizing: border-box;
+}
+
+.logo {
+	display: inline-block;
+	background: #fff url(../../images/logo.png) center no-repeat;
+	text-decoration: none;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.welcome {
+	max-width: 608px;
+	min-height: 504px;
+	border-radius: 50%;
+	position: relative;
+	top: 253px;
+	margin: 0 auto;
+	background: #fff url(../../images/welcome.png) center 28px no-repeat;
+	position: relative;
+	text-align: center;
+}
+
+.welcome > div {
+	max-width: 486px;
+	position: relative;
+	top: 125px;
+	margin: 0 auto;
+	text-align: justify;
+	padding: 0 20px;
+}
+
+@media all and (max-width: 515px) {
+	.welcome {
+		border-radius: 0;
+	}
+
+	.logo {
+		width: 120px;
+		height: 120px;
+		background-size: contain
+	}
+}
+
+@media all and (min-width: 516px) {
+	.logo {
+		width: 168px;
+		height: 168px;
+	}
+}
+
+@media all and (max-width: 1055px) {
+	.welcome > div {
+		top: 195px;
+		max-width: none;
+	}
+}
+
+@media all and (min-width: 1056px) {
+	.welcome > div {
+		max-width: 486px;
+		top: 125px;
+	}
+}
