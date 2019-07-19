@@ -1,0 +1,53 @@
+.modal {
+    background-color: rgba(48, 49, 48, 0.42);
+    height: 100%;
+    position: fixed;
+    transition: all 1.3s;
+    width: 100%;
+    z-index: 21;
+    left: 0;
+    top: 0;
+}
+
+.modal > div {
+    background-color: #fff;
+    z-index: 22;
+    position: relative;
+    border-radius: 10px;
+    padding: 30px 20px 20px 20px;
+}
+
+#modal-container{
+    position: relative;
+    z-index: 20;
+    left: 0;
+    top: 0;
+}
+
+.modal .buttons{
+    text-align: right;
+}
+
+.modal h2 {
+    text-align: left;
+}
+
+.modal p{
+    text-align: left;
+}
+
+@media all and (max-width: 600px) {
+	.modal > div {
+        width: 85%;
+        left: 7.5%;
+        top: 25%;
+    }
+}
+
+@media all and (min-width: 601px) {
+	.modal > div {
+        width: 50%;
+        left: 25%;
+        top: 25%;
+    }
+}

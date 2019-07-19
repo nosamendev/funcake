@@ -63,16 +63,33 @@ main {
 	margin: 0 auto;		
 }
 
-button {
+button,
+.button {
 	background-color: #94449a;
 	color: #fff;
 	border: 0;
 	padding: 10px 30px;
 	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+	background-color: #b057b7;
 }
 
 .button-container {
 	margin: 20px 20px 40px 20px;
+}
+
+h1 {
+	z-index: 3;
+	font-size: 140%;
+	position: relative;
+	text-align: left;
+	margin: 20px;
+	color: #6b6dac;
+	border-bottom: 1px solid #f8d9e8
 }
 
 h2 {
@@ -86,4 +103,26 @@ h2 {
 
 p {
 	z-index: 3;
+	position: relative;
+	text-align: left;
+	padding: 8px 20px;
+	margin: 0;
+}
+
+@media all and (max-width: 1055px) {
+	h1 {
+		margin-top: 100px;
+	}
+}
+
+@media all and (max-width: 580px) {
+	h1 {
+		margin-top: 120px;
+	}
+}
+
+@media all and (max-width: 396px) {
+	h1 {
+		margin-top: 140px;
+	}
 }

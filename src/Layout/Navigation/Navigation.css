@@ -31,8 +31,22 @@ nav ul li a:active {
 	color: #8081be;
 }
 
+nav ul li a.active {
+	color: #f25783;
+}
+
 nav ul + ul {
 	float: right;
+}
+
+nav ul li a span {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #f25783;
+	position: relative;
+	top: -5px;
 }
 
 .mobile-menu {	

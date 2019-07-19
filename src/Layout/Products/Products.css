@@ -21,8 +21,8 @@
 	width: 70px;
 	height: 65px;
 	position: absolute;
-	right: 0;
-	bottom: 0;
+	right: 1px;
+	bottom: 1px;
 	margin-bottom: -4px;
 	margin-right: -4px;
 	padding-top: 25px;
@@ -101,68 +101,129 @@
 	top: -5px;
 }
 
-.products .item:nth-child(1) .preview {
+.products .item .note {
+	display: none;
+	position: absolute;
+	left: 0;
+	bottom: 55px;
+	background-color: #fff;
+	font-size: 85%;
+	padding:5px;
+	border-radius: 2px;
+	border: 1px solid #df2929;
+}
+.products .item .note:after {
+	display: inline-block;
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-top: 5px solid red;
+	left: 20px;
+	bottom: -11px;
+}
+
+.products .item .note.error{
+	display: inline-block;
+}
+
+
+.products .item[data-number="0"] .preview {
 	background: url(../../images/cakes/cake1.png) center no-repeat;	
 }
 
-.products .item:nth-child(2) .preview {
+.products .item[data-number="1"] .preview {
 	background: url(../../images/cakes/cake2.png) center no-repeat;	
 }
 
-.products .item:nth-child(3) .preview {
+.products .item[data-number="2"] .preview {
 	background: url(../../images/cakes/cake3.png) center no-repeat;	
 }
 
-.products .item:nth-child(4) .preview {
+.products .item[data-number="3"] .preview {
 	background: url(../../images/cakes/cake4.png) center no-repeat;	
 }
 
-.products .item:nth-child(5) .preview {
+.products .item[data-number="4"] .preview {
 	background: url(../../images/cakes/cake5.png) center no-repeat;	
 }
 
-.products .item:nth-child(6) .preview {
+.products .item[data-number="5"] .preview {
 	background: url(../../images/cakes/cake6.png) center no-repeat;	
 }
 
-.products .item:nth-child(7) .preview {
+.products .item[data-number="6"] .preview {
 	background: url(../../images/cakes/cake7.png) center no-repeat;	
 }
 
-.products .item:nth-child(8) .preview {
+.products .item[data-number="7"] .preview {
 	background: url(../../images/cakes/cake8.png) center no-repeat;	
 }
 
-.products .item:nth-child(9) .preview {
+.products .item[data-number="8"] .preview {
 	background: url(../../images/cakes/cake9.png) center no-repeat;	
 }
 
-.products .item:nth-child(10) .preview {
+.products .item[data-number="9"] .preview {
 	background: url(../../images/cakes/cake10.png) center no-repeat;	
 }
 
-.products .item:nth-child(11) .preview {
+.products .item[data-number="10"] .preview {
 	background: url(../../images/cakes/cake11.png) center no-repeat;	
 }
 
-.products .item:nth-child(12) .preview {
+.products .item[data-number="11"] .preview {
 	background: url(../../images/cakes/cake12.png) center no-repeat;	
 }
 
-.products .item:nth-child(13) .preview {
+.products .item[data-number="12"] .preview {
 	background: url(../../images/cakes/cake13.png) center no-repeat;	
 }
 
-.products .item:nth-child(14) .preview {
+.products .item[data-number="13"] .preview {
 	background: url(../../images/cakes/cake14.png) center no-repeat;	
 }
 
-.products .item:nth-child(15) .preview {
+.products .item[data-number="14"] .preview {
 	background: url(../../images/cakes/cake15.png) center no-repeat;	
 }
 
-.products .item:nth-child(16) .preview {
+.products .item[data-number="15"] .preview {
 	background: url(../../images/cakes/cake16.png) center no-repeat;	
+}
+
+.total-price {
+	background-color: #e5e6ff;
+	height: 30px;
+	position: absolute;
+	bottom: -33px;
+	left: -3px;
+	width: 60%;
+	border: 3px solid #e5e6ff;
+	text-align: left;
+	padding: 0 10px;
+	border-radius: 0 0 5px 5px;
+	display: none;
+}
+
+.total-price.show {
+	display: inline-block;
+}
+
+.total-price .delete {
+	width: 18px;
+	height: 20px;
+	background: url(../../images/trash.svg) center no-repeat;
+	float: right;
+	cursor: pointer;
+}
+
+.absolute-total {
+	background-color:#e5e6ff;
+	padding: 10px;
+	margin: 40px 0;
+	position: relative;
 }
 
 @media all and (max-width: 890px) {
@@ -187,4 +248,11 @@
 	.products {
 		margin-top: 50px;
 	}
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  -moz-appearance: textfield;
+  margin: 0; 
 }

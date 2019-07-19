@@ -1,3 +1,7 @@
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
+
 export const FETCH_CAKES_START = "FETCH_CAKES_START";
 export const FETCH_CAKES = "FETCH_CAKES";
 export const FETCH_CAKES_FAILED = "FETCH_CAKES_FAILED";
+

@@ -6,4 +6,7 @@ footer {
     text-align: left;
 	display: block;
 	box-sizing: border-box;
+	position: relative;
+	margin-top: 40px;
+	font-size: 90%;
 }

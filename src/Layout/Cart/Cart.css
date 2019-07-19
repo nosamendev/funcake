@@ -1,0 +1,7 @@
+nav .cart span{
+    display: none;
+}
+
+nav .cart.full span{
+    display: inline-block;
+}
