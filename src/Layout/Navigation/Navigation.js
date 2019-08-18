@@ -1,33 +1,55 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = (props) => {
     return (
         <nav>
 			<ul>
 				<li><NavLink exact to="/">HOME</NavLink></li>
 				<li><NavLink to="/about">ABOUT</NavLink></li>
-				<li><a href="">MY ORDERS</a></li>
+				{props.isAuthenticated
+					? <li><NavLink exact to="/orders">MY ORDERS</NavLink></li> : null
+				}
 			</ul>
 			<ul>
-				<li><a href="">LOGIN</a> / </li>
-				<li><a href="">SIGNUP</a></li>
+				{!props.isAuthenticated
+					? <li><NavLink exact to="/auth">AUTH</NavLink></li>
+					: <li><span className="user-email">{localStorage.email}</span><NavLink exact to="/logout">LOGOUT</NavLink></li>
+				}
 				<li><NavLink className="cart" to="/cart">CART<span></span></NavLink></li>
 			</ul>
+			
+			{props.isAuthenticated
+					? <span className="user-email mobile">{localStorage.email}</span> : null
+			}
 			<div className="mobile-menu">
-				<span></span>
+				
+				<span className="menu"></span>
+				
 				<ul>
-					<li><a href="">HOME</a></li>
-					<li><a href="">ABOUT</a></li>
-					<li><a href="">MY ORDERS</a></li>
-					<li><a href="">LOGIN</a></li>
-					<li><a href="">SIGNUP</a></li>
-					<li><a href="">CART</a></li>
+					<li><NavLink exact to="/">HOME</NavLink></li>
+					<li><NavLink to="/about">ABOUT</NavLink></li>
+					{props.isAuthenticated
+						? <li><NavLink exact to="/orders">MY ORDERS</NavLink></li> : null
+					}
+					{!props.isAuthenticated
+						? <li><NavLink exact to="/auth">AUTH</NavLink></li>
+						: <li><NavLink exact to="/logout">LOGOUT</NavLink></li>
+					}
+					<li><NavLink className="cart" to="/cart">CART<span></span></NavLink></li>
 				</ul>
 			</div>
 		</nav>
     );
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.authReducer.token !== null,
+        email: state.authReducer.email
+    }
+}
+
+export default connect(mapStateToProps, null)(Navigation);

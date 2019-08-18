@@ -1,0 +1,94 @@
+.login-form {
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    background-color: #f2f2f2;
+    margin:  0 auto;
+}
+
+.login-form form {
+    position: relative;
+}
+
+.login-form .tabs {
+    position: absolute;
+    left: 0;
+    top: -43px;
+}
+
+.login-form .tabs span {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login-form .tabs span:first-child {
+    border-radius: 5px 0 0 0;
+    border-right: 2px solid #fff;
+}
+
+.login-form .tabs span:nth-child(2) {
+    border-radius: 0 5px 0 0;
+}
+
+.login-form .tabs span.active {
+    background-color: #f2f2f2;
+}
+.login-form .tabs span.active:hover {
+    background-color: #f2f2f2;
+    cursor: default;
+}
+
+.login-form .tabs span:hover {
+    background-color: #eaeaea;
+}
+
+.login-form form .container {
+    margin: 0 auto;
+    display: block;
+    padding: 20px;
+}
+
+.login-form label {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.login-form label span {
+    width: 200px;
+    text-align: left;
+    display: inline-block;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.login-form form > span {
+    display: block;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.login-form form > span:hover {
+    color: #717171;
+}
+
+.login-form button {
+    margin: 15px 0 35px 0;
+}
+
+@media all and (max-width: 1055px) {
+	.login-form {
+        margin-top: 180px;
+        width: 70%;
+	}
+}
+
+@media all and (min-width: 1056px) {
+	.login-form {
+        margin-top: 120px;
+        width: 50%;
+	}
+}

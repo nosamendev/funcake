@@ -36,3 +36,27 @@ export const fetchCakesFailed = (error) => {
         payload: error
     }
 }
+////////////////////////////////////////////
+
+export {
+    authSuccess,
+    authFailed,
+    logout,
+    authEmail,
+    auth,
+    authCheckState
+} from './auth.js';
+
+export {
+    saveOrder
+} from './saveOrder.js';
+
+export {
+    fetchMyOrders,
+    fetchMyOrdersFailed
+} from './fetchMyOrders.js';
+
+export {
+    removingProduct,
+    notRemovingProduct
+} from './removeProduct.js';

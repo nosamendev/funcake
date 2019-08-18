@@ -5,3 +5,7 @@ nav .cart span{
 nav .cart.full span{
     display: inline-block;
 }
+
+.login-msg {
+    text-align: center;
+}

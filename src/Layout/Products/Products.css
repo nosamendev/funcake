@@ -10,6 +10,12 @@
 	border: 3px solid #f8d9e8;	
 	position: relative;
 	margin: 30px 20px;
+	transition: border-color 0.3s ease 0s;
+	-webkit-transition: border-color 0.3s ease 0s;
+}
+
+.products .item.marked {
+	border-color: #ec7597;
 }
 
 .products .item span {
@@ -64,6 +70,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	box-shadow: none;
 }
 
 .products .item .quantity .inc,

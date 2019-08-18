@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import Loader from '../../Loader/Loader';
 import Modal from '../../Modal/Modal';
 import { openModal, closeModal } from '../../../store/actions';
+import { removingProduct, notRemovingProduct } from '../../../store/actions/removeProduct';
 
 
 const Product = (props) => {
 
     const [quantity, setQuantity] = useState(Number(props.quantity));
 
-    //var item = document.querySelector(`.products #item${props.dataNumber}`);
     var item; 
     useEffect(() => {
         item = document.querySelector(`.products #item${props.dataNumber}`);
-        calculateTotal();
+        calculateTotal(); 
+        selectProduct();      
     });
 
     const handleIncrease = () => {
@@ -21,7 +22,7 @@ const Product = (props) => {
 
         if (quantity < 20) {
             setQuantity(quantity + 1);
-            note.classList.remove("error");            
+            note.classList.remove("error");          
         }
     }
 
@@ -29,20 +30,20 @@ const Product = (props) => {
         const note = item.querySelector('.note');
         
         if (quantity > 0) {
-            setQuantity(quantity - 1);
-            note.classList.remove("error");
-        }       
+            setQuantity(quantity - 1);            
+            note.classList.remove("error");        
+        }                 
     }
 
     const validateQuantity = (value) => {
         const note = item.querySelector('.note');
  
-        if ((value => 0) && (value <= 20)) {
+        if ((value >= 0) && (value <= 20)) {
             note.classList.remove("error");
             setQuantity(Number(value));
         }
         else {
-            note.classList.add("error");    
+            note.classList.add("error"); 
         }
     }
 
@@ -56,8 +57,20 @@ const Product = (props) => {
     const removeProduct = () => {
         props.removeProduct(props.dataNumber);
 
+        props.removingProduct();
         props.openModal();
-        setTimeout(() => {props.closeModal()}, 500);
+        setTimeout(() => {props.closeModal(); props.notRemovingProduct()}, 500);
+    }
+
+    const selectProduct = () => {
+        if (item) {
+            if (quantity > 0 && quantity <= 20) {
+                item.classList.add('marked');
+            }
+            else {
+                item.classList.remove('marked');
+            }
+        }
     }
 
     if (props.loading) {
@@ -78,8 +91,8 @@ const Product = (props) => {
                 <span className="quantity">	
                     <input id={`quantity${props.dataNumber}`} type="text" pattern="[0-9]*" value={quantity} 
                         onChange={(e) => {validateQuantity(e.target.value);}} onBlur={(e) => validateQuantity(e.target.value)} />
-                    <span className="inc" id={`inc${props.dataNumber}`} onClick={() => handleIncrease()}> + </span>
-                    <span className="dec" id={`dec${props.dataNumber}`} onClick={() => handleDecrease()}> - </span>
+                    <span className="inc" id={`inc${props.dataNumber}`} onClick={handleIncrease}> + </span>
+                    <span className="dec" id={`dec${props.dataNumber}`} onClick={handleDecrease}> - </span>
                 </span>
                 <span className="price">${props.price}<span>/pc</span></span>
                 <div className="total-price">
@@ -87,10 +100,12 @@ const Product = (props) => {
                     <span className="delete" onClick={removeProduct}></span>
                 </div>
             </div>
+            {/*
             <Modal>
                 <Loader />
             </Modal>
-        </React.Fragment>
+            */}
+        </React.Fragment>        
     );
 }
 
@@ -100,4 +115,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { openModal, closeModal })(Product);
+export default connect(mapStateToProps, { openModal, closeModal, removingProduct, notRemovingProduct })(Product);
