@@ -9,3 +9,7 @@ nav .cart.full span{
 .login-msg {
     text-align: center;
 }
+
+h1 + .products {    
+    margin-top: 50px;
+}

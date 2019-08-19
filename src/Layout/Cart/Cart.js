@@ -19,6 +19,8 @@ const Cart = (props) => {
         }
     });
 
+    const [absoluteTotalState, setAbsoluteTotalState] = useState(0);
+
     useEffect(() => {
         displayMidTotalPrices();
     }, []);
@@ -150,7 +152,8 @@ const Cart = (props) => {
         for (let i = 0; i < cart.length; i++) {
             absoluteTotal += Number(cart[i].quantity) * Number(cart[i].price);
         }
-        absoluteTotalNode.innerHTML = 'Total: $' + Number(absoluteTotal).toFixed(2);    
+        absoluteTotalNode.innerHTML = 'Total: $' + Number(absoluteTotal).toFixed(2);  
+        setAbsoluteTotalState(Number(absoluteTotal).toFixed(2));
     }
 
     const buyNowHandler = (e) => {
@@ -162,10 +165,16 @@ const Cart = (props) => {
             cakes: cart,
             userId: props.userId,
         }
-
-        props.saveOrder(order, props.token);
-        props.openModal();
-        localStorage.order = JSON.stringify([]);
+        if (Number(absoluteTotalState) !== 0.00) {
+            console.log(Number(absoluteTotalState) !== 0.00);
+            props.saveOrder(order, props.token);
+            props.openModal();
+            localStorage.order = JSON.stringify([]);
+        }
+        else {
+            props.openModal();
+        }
+        
     }
 
     const contentsProducts = (cart.length == 0) ? <p>There are no cakes selected yet.</p> : displayProducts();
@@ -181,6 +190,10 @@ const Cart = (props) => {
             contentsMsg = <ConfirmOk text="Your Order has been saved." />;
         }
         else contentsMsg = <Loader />;
+    }
+
+    if (Number(absoluteTotalState) === 0.00) {
+        contentsMsg = <ConfirmErr title="Error!" text="Your order couldn't be saved as 0 is not a valid quantity." />
     }
    
     return (

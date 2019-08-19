@@ -233,13 +233,19 @@
 	position: relative;
 }
 
+@media all and (max-width: 580px) {
+	.products {
+		margin-top: 130px;
+	}
+}
+
 @media all and (max-width: 890px) {
 	.products .item {
 		width: 216px;
 	}
 }
 
-@media all and (max-width: 1055px) {
+@media all and (min-width:581px) and (max-width: 1055px) {
 	.products {
 		margin-top: 100px;
 	}
