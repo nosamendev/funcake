@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Logo render correctly Logo component 1`] = `
+<Link
+  className="logo"
+  to="/"
+/>
+`;

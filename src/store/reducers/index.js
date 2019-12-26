@@ -5,6 +5,7 @@ import authReducer from './authReducer';
 import saveOrderReducer from './saveOrderReducer';
 import myOrdersReducer from './myOrdersReducer';
 import removeProductReducer from './removeProductReducer';
+import cartStatusReducer from './cartStatusReducer';
 
 export default combineReducers({
     cakesReducer: cakesReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     authReducer: authReducer,
     saveOrderReducer: saveOrderReducer,
     myOrdersReducer: myOrdersReducer,
-    removeProductReducer: removeProductReducer
+    removeProductReducer: removeProductReducer,
+    cartStatusReducer: cartStatusReducer
 });

@@ -94,6 +94,11 @@
 	top: 25px;
 }
 
+.products .item .quantity .inc.hide,
+.products .item .quantity .dec.hide {
+	display: none;
+}
+
 .products .item .quantity .inc:hover,
 .products .item .quantity .dec:hover,
 .products .item .quantity .inc:active,
@@ -117,7 +122,7 @@
 	font-size: 85%;
 	padding:5px;
 	border-radius: 2px;
-	border: 1px solid #df2929;
+	border: 1px solid #9629df;
 }
 .products .item .note:after {
 	display: inline-block;
@@ -126,13 +131,14 @@
 	width: 0;
 	height: 0;
 	border: 5px solid transparent;
-	border-top: 5px solid red;
+	border-top: 5px solid #9629df;
 	left: 20px;
 	bottom: -11px;
 }
 
-.products .item .note.error{
+.products .item .note.show{
 	display: inline-block;
+	color: #9629df;
 }
 
 

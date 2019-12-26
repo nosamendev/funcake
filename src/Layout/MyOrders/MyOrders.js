@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchMyOrders } from '../../store/actions/fetchMyOrders';
 import Product from '../Products/Product/Product';
 import Loader from '../Loader/Loader';
-import withCartIndicator from '../../hoc/withCartIndicator';
 import './MyOrders.css';
 
 const MyOrders = (props) => {
@@ -12,12 +11,23 @@ const MyOrders = (props) => {
         props.fetchMyOrders(localStorage.token, localStorage.userId);
     }, []);
 
-    useEffect(() => {
-        disableQuantityInputs();
-        renderDates();
-    });
+    const incRefFunc = (node) => {
+        if (node) {
+            node.classList.add('hide');
+        }
+    }
+    const decRefFunc = (node) => {
+        if (node) {
+            node.classList.add('hide');
+        }
+    }
+    const inputRefFunc = (node) => {
+        if (node) {
+            node.setAttribute('disabled', 'disabled');
+        }
+    }
 
-    const displayOrder = (order) => {
+    const displayOrder = (order, date) => {
         if ( !props.loading && props.orders) {            
 
             const products = order.map((_, i) => {
@@ -27,12 +37,15 @@ const MyOrders = (props) => {
                     id={`item${i}`} 
                     quantity={order[i].quantity} 
                     dataNumber={order[i].dataNumber} 
-                    key={i} />            
+                    key={i}
+                    incRefFunc={incRefFunc}
+                    decRefFunc={decRefFunc}
+                    inputRefFunc={inputRefFunc} />            
             });
 
             return (
                 <div className="order" key={Date.now() + Math.random()}>
-                    <span className="date"></span>
+                    <span className="date">{date}</span>
                     {products}
                 </div>
             );     
@@ -43,32 +56,16 @@ const MyOrders = (props) => {
     const displayAllOrders = () => {
         if ( !props.loading && props.orders) {            
             const orders = Object.values(props.orders);
-            console.log(orders);
+            let dates = [];
+            for (let i = 0; i < orders.length; i++) {
+                dates[i] = orders[i].cakes[0].date;
+            }
             const allOrders = [];
             for (let i = 0; i < orders.length; i++) {
-                allOrders[i] = displayOrder(orders[i].cakes);
+                allOrders[i] = displayOrder(orders[i].cakes, dates[i]);
             }
             return allOrders;
         }
-    }
-
-    const disableQuantityInputs = () => {
-        const quantityInputs = document.querySelectorAll('.my-orders .products .item .quantity input');
-        if (quantityInputs) {
-            for (let i = 0; i < quantityInputs.length; i++) {
-                quantityInputs[i].setAttribute("disabled", "disabled");
-            }
-        }
-    }
-
-    const renderDates = () => {
-        if (props.orders) {
-            const dates = document.querySelectorAll('.my-orders .order .date');
-            const orders = Object.values(props.orders);
-            for (let i = 0; i < dates.length; i++) {
-                dates[i].innerHTML = orders[i].cakes[0].date;
-            }
-        }     
     }
 
     return (
@@ -77,7 +74,7 @@ const MyOrders = (props) => {
             <div className="my-orders">
                 <section className="products">
                     {displayAllOrders()}
-                    </section>
+                </section>
             </div>
         </React.Fragment>
     );
@@ -90,4 +87,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchMyOrders })(withCartIndicator(MyOrders));
+export default connect(mapStateToProps, { fetchMyOrders })(MyOrders);

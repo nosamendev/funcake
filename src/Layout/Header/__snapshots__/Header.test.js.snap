@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Header render correctly Header component 1`] = `
+<header>
+  <Logo />
+  <div
+    className="welcome"
+  >
+    <div>
+      Our menu includes trusted signature flavors as well as seasonal and monthly favorites all made fresh daily using local, real ingredients!
+    </div>
+  </div>
+</header>
+`;

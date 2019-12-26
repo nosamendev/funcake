@@ -35,10 +35,10 @@ const App = (props) => {
       <Switch>
         <Route path="/cart" exact component={Cart} />
         <Route path="/" exact component={Products} />
-        <Route path="/about" exact component ={About} />
+        <Route path="/about" exact component={About} />
         <Route path="/logout" exact component={Logout} />
-        <Route path="/auth" exact component ={Auth} />
-        <Route path="/orders" exact component ={MyOrders} />
+        <Route path="/auth" exact component={Auth} />
+        <Route path="/orders" exact component={MyOrders} />
         <Route render={() => <h1>(404) This file cannot be found</h1>} />
       </Switch>
     );

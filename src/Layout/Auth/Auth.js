@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../../store/actions/index';
 import Loader from '../Loader/Loader';
-import withCartIndicator from '../../hoc/withCartIndicator';
 import './Auth.css';
 
 const Auth = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isSignUp, setIsSignUp] = useState(true);
+    const [isSignUp, setIsSignUp] = useState(false);
+
+    const loginRef = useRef(null);
+    const registerRef = useRef(null);
 
     const onEmailChange = (e) => {
         setEmail(e.target.value);
@@ -22,21 +24,20 @@ const Auth = (props) => {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        props.auth(email, password);
+        props.auth(email, password, isSignUp);
     }
 
     const switchLoginRegister = (e) => {
-        const tabs = document.querySelectorAll('.tabs span');
-        console.log(e.target.getAttribute('data-number'));
-        if (e.target.getAttribute('data-number') == "0") {
-            setIsSignUp(true);
-            tabs[0].classList.add('active');
-            tabs[1].classList.remove('active');
+
+        if (e.target == loginRef.current) {
+            setIsSignUp(false);
+            loginRef.current.classList.add('active');
+            registerRef.current.classList.remove('active');
         } 
         else {
-            setIsSignUp(false);
-            tabs[0].classList.remove('active');
-            tabs[1].classList.add('active');
+            setIsSignUp(true);
+            loginRef.current.classList.remove('active');
+            registerRef.current.classList.add('active');
         }
     }
 
@@ -51,8 +52,8 @@ const Auth = (props) => {
     let form = (
         <form onSubmit={onFormSubmit}>
             <div className="tabs">
-                <span data-number="0" onClick={e => switchLoginRegister(e)} className="active">LOGIN</span>
-                <span data-number="1" onClick={e => switchLoginRegister(e)}>REGISTER</span>
+                <span ref={loginRef} data-number="0" onClick={e => switchLoginRegister(e)} className={!isSignUp ? "active" : ""}>LOGIN</span>
+                <span ref={registerRef} data-number="1" onClick={e => switchLoginRegister(e)} className={isSignUp ? "active" : ""}>REGISTER</span>
             </div>
             
             <div className="container">
@@ -95,4 +96,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { auth })(withCartIndicator(Auth));
+export default connect(mapStateToProps, { auth })(Auth);

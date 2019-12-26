@@ -1,5 +1,4 @@
 import React from 'react';
-import withCartIndicator from '../../hoc/withCartIndicator';
 
 const About = () => {
     return (
@@ -12,4 +11,4 @@ const About = () => {
     );
 }
 
-export default withCartIndicator(About);
+export default About;

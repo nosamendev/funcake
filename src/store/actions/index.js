@@ -1,5 +1,6 @@
 import { OPEN_MODAL, CLOSE_MODAL, 
-    FETCH_CAKES_START, FETCH_CAKES, FETCH_CAKES_FAILED } from '../actions/types';
+    FETCH_CAKES_START, FETCH_CAKES, FETCH_CAKES_FAILED,
+    CART_LOADED, CART_EMPTY } from '../actions/types';
 
 import cakes from '../../api/cakes';
 import axios from 'axios';
@@ -60,3 +61,8 @@ export {
     removingProduct,
     notRemovingProduct
 } from './removeProduct.js';
+
+export {
+    loadCart,
+    emptyCart
+} from './cartStatus';

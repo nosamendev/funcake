@@ -1,57 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { connect } from 'react-redux';
 import Loader from '../../Loader/Loader';
-import Modal from '../../Modal/Modal';
-import { openModal, closeModal } from '../../../store/actions';
+import { openModal, closeModal, emptyCart } from '../../../store/actions';
 import { removingProduct, notRemovingProduct } from '../../../store/actions/removeProduct';
 
 
-const Product = (props) => {
+export const Product = (props) => {
 
     const [quantity, setQuantity] = useState(Number(props.quantity));
 
-    var item; 
-    useEffect(() => {
-        item = document.querySelector(`.products #item${props.dataNumber}`);
-        calculateTotal(); 
-        selectProduct();      
+    const itemRef = useCallback(node => {
+        if (node) {
+            if (quantity > 0 && quantity <= 20) {
+                node.classList.add('marked');
+            }
+            else {
+                node.classList.remove('marked');
+            }
+        }    
     });
 
-    const handleIncrease = () => {
-        const note = item.querySelector('.note');
-
-        if (quantity < 20) {
-            setQuantity(quantity + 1);
-            note.classList.remove("error");          
+    const totalRef = useCallback(node => {
+        if (node) {
+            node.innerHTML = '$' + (quantity * props.price).toFixed(2);
         }
+    });
+
+    const incRef = useCallback (node => {
+        if (node) {
+            props.incRefFunc(node);
+        }
+    });
+
+    const decRef = useCallback (node => {
+        if (node) {
+            props.decRefFunc(node);
+        }
+    });
+
+    const inputRef = useCallback (node => {
+        if (node) {
+            props.inputRefFunc(node);
+        }
+    });
+
+    const noteRef = useRef(null);
+
+    const showHideNote = () => {
+        if (noteRef.current.classList.contains("show")) {
+            noteRef.current.classList.remove("show");
+        }
+        else {
+            noteRef.current.classList.add("show");
+        }    
     }
 
-    const handleDecrease = () => {
-        const note = item.querySelector('.note');
-        
+    const handleIncrease = () => {
+        if (quantity < 20) {
+            setQuantity(quantity + 1); 
+            handleQuantities(quantity + 1);    
+        }    
+    }
+
+    const handleDecrease = () => {      
         if (quantity > 0) {
-            setQuantity(quantity - 1);            
-            note.classList.remove("error");        
+            setQuantity(quantity - 1);  
+            handleQuantities(quantity - 1);                
         }                 
     }
 
-    const validateQuantity = (value) => {
-        const note = item.querySelector('.note');
- 
+    const validateQuantity = (value) => {   
         if ((value >= 0) && (value <= 20)) {
-            note.classList.remove("error");
             setQuantity(Number(value));
+            handleQuantities(Number(value));
         }
-        else {
-            note.classList.add("error"); 
+        if (value > 20) {
+            setQuantity(20);
+            handleQuantities(20);
         }
-    }
-
-    const calculateTotal = () => {
-        if (item) {
-            const total = item.querySelector('.total-price .total');
-            total.innerHTML = '$' + (quantity * props.price).toFixed(2);
-        }                
+        if ((value < 0) || isNaN(quantity)) {
+            setQuantity(0);
+            handleQuantities(0);
+        }   
     }
 
     const removeProduct = () => {
@@ -59,18 +89,17 @@ const Product = (props) => {
 
         props.removingProduct();
         props.openModal();
+
+        const cart = JSON.parse(localStorage.order)
+        if (cart.length === 0) {
+            props.emptyCart();
+        }
+
         setTimeout(() => {props.closeModal(); props.notRemovingProduct()}, 500);
     }
 
-    const selectProduct = () => {
-        if (item) {
-            if (quantity > 0 && quantity <= 20) {
-                item.classList.add('marked');
-            }
-            else {
-                item.classList.remove('marked');
-            }
-        }
+    const handleQuantities = (quant) => {
+        props.handleQuantities(props.dataNumber, quant);
     }
 
     if (props.loading) {
@@ -83,28 +112,24 @@ const Product = (props) => {
 
     return (
         <React.Fragment>
-            <div className="item" data-number={props.dataNumber} id={props.id}>
+            <div ref={itemRef} className="item" data-number={props.dataNumber} id={props.id}>
                 <span className="title">{props.name}</span>
                 <span className="preview"></span>
 
-                <span className="note">From 0 to 20</span>    	
+                <span ref={noteRef} className="note">From 0 to 20</span>    	
                 <span className="quantity">	
-                    <input id={`quantity${props.dataNumber}`} type="text" pattern="[0-9]*" value={quantity} 
-                        onChange={(e) => {validateQuantity(e.target.value);}} onBlur={(e) => validateQuantity(e.target.value)} />
-                    <span className="inc" id={`inc${props.dataNumber}`} onClick={handleIncrease}> + </span>
-                    <span className="dec" id={`dec${props.dataNumber}`} onClick={handleDecrease}> - </span>
+                    <input ref={inputRef} id={`quantity${props.dataNumber}`} type="text" pattern="[0-9]*" value={quantity} 
+                        onFocus={showHideNote}
+                        onChange={(e) => {validateQuantity(e.target.value);}} onBlur={showHideNote} />
+                    <span ref={incRef} className="inc" id={`inc${props.dataNumber}`} onClick={handleIncrease}> + </span>
+                    <span ref={decRef} className="dec" id={`dec${props.dataNumber}`} onClick={handleDecrease}> - </span>
                 </span>
                 <span className="price">${props.price}<span>/pc</span></span>
-                <div className="total-price">
-                    <span className="total"></span>
+                <div className={props.showMidTotalPrice ? "total-price show" : "total-price"}>
+                    <span ref={totalRef} className="total"></span>
                     <span className="delete" onClick={removeProduct}></span>
                 </div>
             </div>
-            {/*
-            <Modal>
-                <Loader />
-            </Modal>
-            */}
         </React.Fragment>        
     );
 }
@@ -115,4 +140,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { openModal, closeModal, removingProduct, notRemovingProduct })(Product);
+export default connect(mapStateToProps, { openModal, closeModal, removingProduct, notRemovingProduct, emptyCart })(Product);

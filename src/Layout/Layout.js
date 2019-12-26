@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './Header/Header';
 import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
@@ -8,12 +9,14 @@ const Layout = (props) => {
 
     return (
         <React.Fragment>
-            <Header />
-            <Navigation />
-            <main>
-                {props.children}
-            </main>
-            <Footer />
+            <BrowserRouter>
+                <Header />
+                <Navigation />
+                <main>
+                    {props.children}
+                </main>
+                <Footer />
+            </BrowserRouter>
         </React.Fragment>
     );
 }

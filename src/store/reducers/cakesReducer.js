@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     description: ''
 };
 
-export default (state = INITIAL_STATE, action) => {
+const cakesReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_CAKES:
             return {...state, ...action.payload, loading: false};       
@@ -19,3 +19,5 @@ export default (state = INITIAL_STATE, action) => {
             return state;
     }
 }
+
+export default cakesReducer;
